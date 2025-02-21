@@ -1,72 +1,55 @@
 <template>
-  <div>
-    <!-- Navigatiebalk -->
-    <header class="bg-gradient-to-r from-[#D7AED3] to-[#4B5563] text-white p-7">
-      <nav class="flex justify-between items-center">
-        <!-- Logo of Titel -->
-        <div class="text-2xl font-bold">Logo</div>
+  <div class="flex h-screen">
+    <!-- Zijbalk -->
+    <aside class="bg-gray-800 text-white w-90 p-7 flex flex-col h-full">
+      <div class="text-4xl font-bold mb-6">Leon de Haas</div>
+      <ul class="space-y-6 flex-grow">
+        <li class="flex items-center space-x-3">
+          <NuxtLink 
+            to="/" 
+            class="w-full flex justify-start items-center py-2.5 bg-transparent hover:bg-gray-700 text-white font-bold text-2xl rounded-lg transition-all duration-300">
+            <i class="fa-solid fa-house text-xl mr-3"></i> Home
+          </NuxtLink>
+        </li>
+        <li class="flex items-center space-x-3">
+          <NuxtLink 
+            to="/about" 
+            class="w-full flex justify-start items-center py-2.5 bg-transparent hover:bg-gray-700 text-white font-bold text-2xl rounded-lg transition-all duration-300">
+            <i class="fa-solid fa-address-card text-xl mr-3"></i> About
+          </NuxtLink>
+        </li>
+        <li class="flex items-center space-x-3">
+          <NuxtLink 
+            to="/contact" 
+            class="w-full flex justify-start items-center py-2.5 bg-transparent hover:bg-gray-700 text-white font-bold text-2xl rounded-lg transition-all duration-300">
+            <i class="fa-solid fa-comment-arrow-up-right text-xl mr-3"></i> Contact
+          </NuxtLink>
+        </li>
+        <li class="flex items-center space-x-3">
+          <NuxtLink 
+            to="/products" 
+            class="w-full flex justify-start items-center py-2.5 bg-transparent hover:bg-gray-700 text-white font-bold text-2xl rounded-lg transition-all duration-300">
+            <i class="fa-solid fa-comment-arrow-up-right text-xl mr-3"></i> Products
+          </NuxtLink>
+        </li>
+      </ul>
 
-        <!-- Navigatie menu (altijd zichtbaar op desktop, verborgen op mobiel) -->
-        <ul class="hidden md:flex space-x-6">
-          <li><NuxtLink to="/" class="font-bold text-2xl hover:text-gray-400">Home</NuxtLink></li>
-          <li><NuxtLink to="/about" class="font-bold text-2xl hover:text-gray-400">About</NuxtLink></li>
-          <li><NuxtLink to="/contact" class="font-bold text-2xl hover:text-gray-400">Contact</NuxtLink></li>
-        </ul>
-
-        <!-- Hamburger-menu knop (zichtbaar op kleine schermen) -->
-        <button 
-          @click="toggleMenu" 
-          class="md:hidden text-white focus:outline-none"
-        >
-          <svg 
-            class="w-8 h-8" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24" 
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path 
-              stroke-linecap="round" 
-              stroke-linejoin="round" 
-              stroke-width="2" 
-              d="M4 6h16M4 12h16m-7 6h7"
-            ></path>
-          </svg>
-        </button>
-
-        <!-- Uitklapbaar menu voor mobiel -->
-        <div 
-          class="absolute md:hidden top-20 left-0 w-full bg-[#4B5563] p-5 transition-all duration-300"
-          :class="{'hidden': !isOpen, 'block': isOpen}"
-        >
-          <ul class="flex flex-col space-y-4">
-            <li><NuxtLink to="/" class="font-bold text-2xl hover:text-gray-400">Home</NuxtLink></li>
-            <li><NuxtLink to="/about" class="font-bold text-2xl hover:text-gray-400">About</NuxtLink></li>
-            <li><NuxtLink to="/contact" class="font-bold text-2xl hover:text-gray-400">Contact</NuxtLink></li>
-          </ul>
-
-          <!-- Login en Water-knoppen in het mobiele menu -->
-          <div class="flex flex-col mt-4 space-y-4">
-            <Water />
-            <Login />
-          </div>
-        </div>
-
-        <!-- Knoppen (Login + Water) altijd zichtbaar op desktop -->
-        <div class="hidden md:flex space-x-4">
-          <Water />
-          <Login />
-        </div>
-      </nav>
-    </header>
+      <primaryButton />
+    </aside>
 
     <!-- De daadwerkelijke pagina's worden hier geladen -->
-    <NuxtPage />
+    <div class="flex-1 p-7 overflow-auto">
+      <NuxtPage />
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
-import Login from '@/components/Login.vue'
-import Water from '@/components/Water.vue'
+import primaryButton from '~/components/primaryButton.vue';
+
+export default {
+  components: {
+    primaryButton,
+  },
+};
 </script>
